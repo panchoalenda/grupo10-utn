@@ -20,7 +20,11 @@ public class Tecnico{
     @Column(name = "nombre")
     private String razonSocial;
 
-    @ElementCollection
-    private List<String> servicios;
+    @ManyToMany
+    @JoinTable(
+      name = "tecnicos_servicios",  // Nombre de la tabla intermedia
+      joinColumns = @JoinColumn(name = "tecnicos_id"),
+      inverseJoinColumns = @JoinColumn(name = "servicios_id"))
+    private List<Servicio> servicios;
 
 }

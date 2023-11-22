@@ -22,8 +22,7 @@ public class Incidente {
     @Column(name = "tipos_de_problemas")
     private String                   tipoDeProblema;
 
-    @Column(name = "servicios_reportados")
-    @Enumerated(EnumType.STRING)
+    @OneToOne(cascade = CascadeType.ALL)
     private Servicio servicioReportado;
 
     @Column(name = "estados")

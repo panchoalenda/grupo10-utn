@@ -22,7 +22,7 @@ public class Cliente {
     @Column(name = "cuil")
     private String cuil;
 
-    @ElementCollection
-    private List<String> serviciosContratados;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Servicio> serviciosContratados;
 
 }
