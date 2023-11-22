@@ -1,4 +1,4 @@
-package com.grupo10.app.models;
+package com.grupo10.app.Model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,11 +16,11 @@ import java.time.LocalTime;
 public class Incidente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long                     id;
-    @Column(name = "descripciones")
-    private String                   descripcion;
-    @Column(name = "tipos_de_problemas")
-    private String                   tipoDeProblema;
+    private Long id;
+    @Column(name = "descripcion")
+    private String descripcion;
+    @Column(name = "tiposDeProblema")
+    private String tipoDeProblema;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Servicio servicioReportado;
@@ -30,7 +30,7 @@ public class Incidente {
 
     @OneToOne
     @JoinColumn(name = "cliente_id", referencedColumnName = "id")
-    private Cliente                  cliente;
+    private Cliente cliente;
 
     @OneToOne
     @JoinColumn(name = "tecnico_id", referencedColumnName = "id")

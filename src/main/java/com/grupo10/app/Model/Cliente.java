@@ -1,4 +1,4 @@
-package com.grupo10.app.models;
+package com.grupo10.app.Model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,19 +8,12 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Entity
-@Table(name = "clientes")
+@Table(name = "persona")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cliente {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long   id;
-    @Column(name = "razon_social")
-    private String razonSocial;
+public class Cliente extends Persona{
 
-    @Column(name = "cuil")
-    private String cuil;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Servicio> serviciosContratados;

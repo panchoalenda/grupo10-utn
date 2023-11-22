@@ -1,4 +1,4 @@
-package com.grupo10.app.models;
+package com.grupo10.app.Model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
