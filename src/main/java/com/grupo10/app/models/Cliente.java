@@ -19,8 +19,8 @@ public class Cliente {
     @Column(name = "razon_social")
     private String razonSocial;
 
-    @Column(name = "cuil")
-    private String cuil;
+    @Column(name = "cuit")
+    private String cuit;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Servicio> serviciosContratados;
