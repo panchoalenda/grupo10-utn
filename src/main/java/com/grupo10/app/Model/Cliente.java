@@ -14,8 +14,6 @@ import java.util.List;
 @NoArgsConstructor
 public class Cliente extends Persona{
 
-    //probando
-    
     @OneToMany(cascade = CascadeType.ALL)
     private List<Servicio> serviciosContratados;
 
