@@ -18,9 +18,8 @@ public class Servicio {
     private Long   id;
 
     @Column(name = "servicios")
-    @Enumerated(EnumType.STRING)
-    private CatalogoServicio servicio;
+    private CatalogoServ servicio;
 
     @ManyToMany(mappedBy = "servicios")
-    private List<Tecnico> servicios;
+    private List<Tecnico> tecnicos;
 }

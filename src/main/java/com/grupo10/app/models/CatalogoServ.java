@@ -8,21 +8,15 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Entity
-@Table(name = "clientes")
+@Table(name = "catalogo_servicios")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cliente {
+public class CatalogoServ {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long   id;
-        @Column(name = "razon_social")
-        private String razonSocial;
-
-    @Column(name = "cuil")
-    private String cuil;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Servicio> serviciosContratados;
+        @Column(name = "nombre_servicio")
+        private String nombre;
 
 }
