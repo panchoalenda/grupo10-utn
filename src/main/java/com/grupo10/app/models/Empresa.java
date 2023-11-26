@@ -2,7 +2,7 @@ package com.grupo10.app.models;
 import java.time.LocalDate;
 import java.util.*;
 import  java.time.temporal.ChronoUnit;
-
+// mi rama
 public class Empresa {
     private List<Cliente> clientes;
     private List<Incidente> incidentes;
