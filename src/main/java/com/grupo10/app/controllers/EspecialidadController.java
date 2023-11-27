@@ -1,7 +1,7 @@
 package com.grupo10.app.controllers;
 
-import com.grupo10.app.models.CatalogoServ;
-import com.grupo10.app.services.CatalogoServService;
+import com.grupo10.app.models.Especialidad;
+import com.grupo10.app.services.EspecialidadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,18 +11,18 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/catalogo-servicio")
-public class CatalogoServicioController {
+public class EspecialidadController {
     @Autowired
-    CatalogoServService catalogoServicioService;
+    EspecialidadService catalogoServicioService;
 
     @GetMapping
-    public ResponseEntity<List<CatalogoServ>> listar() {
+    public ResponseEntity<List<Especialidad>> listar() {
         return ResponseEntity.ok(catalogoServicioService.listar());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CatalogoServ> buscarPorId(@PathVariable Long id) {
-        CatalogoServ incidenteBD = catalogoServicioService.buscarPorId(id);
+    public ResponseEntity<Especialidad> buscarPorId(@PathVariable Long id) {
+        Especialidad incidenteBD = catalogoServicioService.buscarPorId(id);
         if (incidenteBD != null) {
             return ResponseEntity.ok(incidenteBD);
         }
@@ -30,14 +30,14 @@ public class CatalogoServicioController {
     }
 
     @PostMapping
-    public ResponseEntity<CatalogoServ> guardar(@RequestBody CatalogoServ catalogoServicio) {
+    public ResponseEntity<Especialidad> guardar(@RequestBody Especialidad catalogoServicio) {
         System.out.println(catalogoServicio);
         return ResponseEntity.status(HttpStatus.CREATED).body(catalogoServicioService.guardar(catalogoServicio));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CatalogoServ> guardar(@PathVariable Long id, @RequestBody CatalogoServ catalogoServicio) {
-        CatalogoServ catalogoServicioBD = catalogoServicioService.modificar(id, catalogoServicio);
+    public ResponseEntity<Especialidad> guardar(@PathVariable Long id, @RequestBody Especialidad catalogoServicio) {
+        Especialidad catalogoServicioBD = catalogoServicioService.modificar(id, catalogoServicio);
 
         if(catalogoServicioBD == null){
             return ResponseEntity.notFound().build();
@@ -46,8 +46,8 @@ public class CatalogoServicioController {
     }
 
     @DeleteMapping
-    public ResponseEntity<CatalogoServ> eliminar(@PathVariable Long id) {
-        CatalogoServ catalogoServicioBD = catalogoServicioService.buscarPorId(id);
+    public ResponseEntity<Especialidad> eliminar(@PathVariable Long id) {
+        Especialidad catalogoServicioBD = catalogoServicioService.buscarPorId(id);
 
         if(catalogoServicioBD == null){
             return ResponseEntity.notFound().build();

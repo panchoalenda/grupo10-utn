@@ -13,16 +13,19 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Cliente {
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long   id;
-        @Column(name = "razon_social")
-        private String razonSocial;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long   id;
+    @Column(name = "razon_social")
+    private String razonSocial;
 
     @Column(name = "cuil")
     private String cuil;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(targetEntity = Servicio.class, cascade = CascadeType.ALL)
     private List<Servicio> serviciosContratados;
+
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    private List<Incidente> incidentes;
 
 }

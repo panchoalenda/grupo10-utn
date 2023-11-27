@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Table(name = "incidentes")
@@ -16,11 +17,11 @@ import java.time.LocalTime;
 public class Incidente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long                     id;
+    private Long   id;
     @Column(name = "descripciones")
-    private String                   descripcion;
+    private String descripcion;
     @Column(name = "tipos_de_problemas")
-    private String                   tipoDeProblema;
+    private String tipoDeProblema;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Servicio servicioReportado;
@@ -28,13 +29,12 @@ public class Incidente {
     @Column(name = "estados")
     private Estado estado;
 
-    @OneToOne
-    @JoinColumn(name = "cliente_id", referencedColumnName = "id")
-    private Cliente                  cliente;
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
 
-    @OneToOne
-    @JoinColumn(name = "tecnico_id", referencedColumnName = "id")
-    private Tecnico tecnico;
+    @ManyToMany(mappedBy = "incidentes")
+    private List<Tecnico> tecnico;
 
     @Column(name = "tiempo_resolucion")
     private LocalTime tiempoResolucion;
@@ -43,7 +43,7 @@ public class Incidente {
     private LocalDate fechaPosibleResolucion;
 
     public Incidente(Long id, String descripcion, String tipoDeProblema, Servicio servicioReportado,
-                     Cliente cliente, Tecnico tecnico, LocalTime tiempoResolucion,
+                     Cliente cliente, List<Tecnico> tecnico, LocalTime tiempoResolucion,
                      LocalDate fechaPosibleResolucion) {
         this.id = id;
         this.descripcion = descripcion;
@@ -64,11 +64,11 @@ public class Incidente {
     }
 
     private String enviarAvisoTecnico() {
-       return this.tecnico + " tienes un nuevo incidente para resolver.";
+        return this.tecnico + " tienes un nuevo incidente para resolver.";
     }
 
-    public void estaSolucionado(Boolean isResuelto){
-        if(isResuelto){
+    public void estaSolucionado(Boolean isResuelto) {
+        if (isResuelto) {
             System.out.println("Código para enviar el mail al cliente");
             this.estado = Estado.RESUELTO;
         }

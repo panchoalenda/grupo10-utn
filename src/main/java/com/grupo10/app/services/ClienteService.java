@@ -28,10 +28,18 @@ public class ClienteService implements IClienteService{
 
     @Override
     public Cliente modificar(Long id, Cliente cliente) {
-        Optional<Cliente> clienteBD = clienteRepository.findById(id);
+        System.out.println("El cliente es : " + id);
 
+        Optional<Cliente> clienteBD = clienteRepository.findById(id);
+        System.out.println();
         if(clienteBD.isPresent()){
-            return clienteRepository.save(cliente);
+            Cliente cliente1 = clienteBD.get();
+            cliente1.setCuil(cliente.getCuil());
+            cliente1.setRazonSocial(cliente.getRazonSocial());
+            if (cliente1.getServiciosContratados() != null) {
+                cliente1.setServiciosContratados(cliente.getServiciosContratados());
+            }
+            return clienteRepository.save(cliente1);
         }
 
         return null;

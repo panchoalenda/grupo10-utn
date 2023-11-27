@@ -12,19 +12,23 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Tecnico{
+public class Tecnico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long   id;
+    private Long id;
 
     @Column(name = "nombre")
     private String razonSocial;
 
-    @ManyToMany
+    @ManyToMany(targetEntity = Especialidad.class, cascade = CascadeType.ALL)
+    private List<Especialidad> especialidades;
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
-      name = "tecnicos_servicios",  // Nombre de la tabla intermedia
-      joinColumns = @JoinColumn(name = "tecnicos_id"),
-      inverseJoinColumns = @JoinColumn(name = "servicios_id"))
-    private List<Servicio> servicios;
+      name = "tecnicos_Incidentes",
+      joinColumns = @JoinColumn(name = "tecnico_id"),
+      inverseJoinColumns = @JoinColumn(name = "incidente_id"))
+    private List<Incidente> incidentes;
+
 
 }

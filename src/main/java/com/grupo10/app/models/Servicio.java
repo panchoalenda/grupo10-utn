@@ -15,11 +15,10 @@ import java.util.List;
 public class Servicio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long   id;
+    private Long id;
 
-    @Column(name = "servicios")
-    private CatalogoServ servicio;
+    @Column
+    private String nombre;
 
-    @ManyToMany(mappedBy = "servicios")
-    private List<Tecnico> tecnicos;
+
 }
